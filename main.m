@@ -91,6 +91,23 @@ imwrite(overlay, fullfile(resultsDir, 'overlay.png'));
 fprintf(' Analysis completed. Results saved in: %s\n', resultsDir);
 fprintf('  - Suspicious regions: %d\n', numRegions);
 fprintf('  - Percent suspicious pixels: %.4f %%\n', percentAnom);
+% ========================================================
+% NOTE:
+% This program is fully tested and works on MATLAB only.
+% If you want to run it on Octave, some functions may not be supported or behave differently.
+% To run on Octave, you may need to:
+%   - Install and load necessary packages: image, statistics
+%     pkg install -forge image
+%     pkg load image
+%     pkg install -forge statistics
+%     pkg load statistics
+%   - Replace or adapt unsupported functions such as:
+%       * imgaussfilt (use imfilter with Gaussian kernel)
+%       * regionprops (alternative implementations needed)
+%       * imshow and figure properties may differ
+% Please test thoroughly and adjust code accordingly when using Octave.
+% ========================================================
+
 
 % Display final summary in one figure
 figure('Name','Summary','NumberTitle','off','Units','normalized','Position',[0.1 0.1 0.8 0.6]);
