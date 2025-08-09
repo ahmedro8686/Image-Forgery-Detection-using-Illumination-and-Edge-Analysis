@@ -91,6 +91,16 @@ imwrite(overlay, fullfile(resultsDir, 'overlay.png'));
 fprintf(' Analysis completed. Results saved in: %s\n', resultsDir);
 fprintf('  - Suspicious regions: %d\n', numRegions);
 fprintf('  - Percent suspicious pixels: %.4f %%\n', percentAnom);
+
+% Display final summary in one figure
+figure('Name','Summary','NumberTitle','off','Units','normalized','Position',[0.1 0.1 0.8 0.6]);
+subplot(2,3,1); imshow(imgRGB); title('Original Image');
+subplot(2,3,2); imshow(illumMeanNorm); title('Illumination Map');
+subplot(2,3,3); imshow(gradMagNorm); title('Illumination Gradient');
+subplot(2,3,4); imshow(edgesBinary); title('RGB Edges');
+subplot(2,3,5); imshow(zMapNorm); title('Z-score Anomaly Map');
+subplot(2,3,6); imshow(overlay); title('Overlay of Suspicious Regions');
+saveas(gcf, fullfile(resultsDir, 'summary_grid.png'));
 % ========================================================
 % NOTE:
 % This program is fully tested and works on MATLAB only.
@@ -107,14 +117,3 @@ fprintf('  - Percent suspicious pixels: %.4f %%\n', percentAnom);
 %       * imshow and figure properties may differ
 % Please test thoroughly and adjust code accordingly when using Octave.
 % ========================================================
-
-
-% Display final summary in one figure
-figure('Name','Summary','NumberTitle','off','Units','normalized','Position',[0.1 0.1 0.8 0.6]);
-subplot(2,3,1); imshow(imgRGB); title('Original Image');
-subplot(2,3,2); imshow(illumMeanNorm); title('Illumination Map');
-subplot(2,3,3); imshow(gradMagNorm); title('Illumination Gradient');
-subplot(2,3,4); imshow(edgesBinary); title('RGB Edges');
-subplot(2,3,5); imshow(zMapNorm); title('Z-score Anomaly Map');
-subplot(2,3,6); imshow(overlay); title('Overlay of Suspicious Regions');
-saveas(gcf, fullfile(resultsDir, 'summary_grid.png'));
